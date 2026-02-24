@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Wishma 🌹</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(135deg, #ffd1dc, #fff0f5);
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Falling Rose Petals */
+.petal {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear infinite;
+  color: #ff4d6d;
+  z-index: 1;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Golden Glowing Name */
+h1 {
+  font-size: 52px;
+  background: linear-gradient(to right, gold, #ffd700, #fff5b1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255,215,0,0.7);
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #cc0066;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+
+.photo {
+  width: 260px;
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transition: transform 0.4s ease;
+}
+
+.photo:hover {
+  transform: scale(1.05);
+}
+
+.note {
+  max-width: 750px;
+  margin: auto;
+  font-size: 20px;
+  color: #4d004d;
+  background: rgba(255,255,255,0.9);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  line-height: 1.9;
+}
+
+button {
+  margin-top: 30px;
+  padding: 14px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background-color: #ff4da6;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #e60073;
+  transform: scale(1.05);
+}
+
+.hidden-message {
+  display: none;
+  margin-top: 25px;
+  font-size: 24px;
+  color: #99004d;
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="https://pagalfree.com/musics/128-Dream%20Girl%20-%20Dream%20Girl%20128%20Kbps.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<h1>Wishma 🌹</h1>
+<h2>A celebration of you — every moment of your beautiful life 💖</h2>
+
+<img src="wishma.png" class="photo" alt="Wishma">
+
+<div class="note">
+<p><strong>My Dearest Wishma,</strong></p>
+
+<p>
+This bouquet of roses and blossoms is not for a single occasion.
+It is for every heartbeat of your existence.
+For every smile you give.
+For every moment you breathe.
+For simply being you.
+</p>
+
+<p>
+You are the softness in my world,
+the calm in my storms,
+and the most beautiful chapter of my life.
+</p>
+
+<p>
+🌹 "Tum meri zindagi ka woh khubsurat ehsaas ho,
+jise lafzon mein bayan karna namumkin sa lagta hai."
+</p>
+
+<p>
+🌸 "Har phool ki mehak mein tera hi zikr milta hai,
+jaise meri har dua ka jawab tum hi ho."
+</p>
+
+<p>
+Forever yours ❤️
+</p>
+</div>
+
+<button onclick="showMessage()">Open My Heart 💌</button>
+
+<div class="hidden-message" id="secret">
+Wishma… you are my dream girl, today and always 🌹✨
+</div>
+
+</div>
+
+<script>
+// Generate Falling Rose Petals
+for (let i = 0; i < 30; i++) {
+  let petal = document.createElement("div");
+  petal.className = "petal";
+  petal.innerHTML = "🌹";
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = (4 + Math.random() * 6) + "s";
+  petal.style.fontSize = (15 + Math.random() * 20) + "px";
+  document.body.appendChild(petal);
+}
+
+function showMessage() {
+  document.getElementById("secret").style.display = "block";
+}
+</script>
+
+</body>
+</html>
