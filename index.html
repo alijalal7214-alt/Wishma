@@ -3,179 +3,353 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Wishma 🌹</title>
+<title>For My Wishma ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(135deg, #ffd1dc, #fff0f5);
-  text-align: center;
-  overflow-x: hidden;
+body{
+margin:0;
+padding:0;
+text-align:center;
+font-family:Georgia, serif;
+background:linear-gradient(to bottom,#fff0f5,#ffe4e1);
+overflow-x:hidden;
 }
 
-/* Falling Rose Petals */
-.petal {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall linear infinite;
-  color: #ff4d6d;
-  z-index: 1;
+/* Full screen countdown overlay */
+#preCountdown{
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:#ffe4e1;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+font-size:120px;
+color:#ff004f;
+font-weight:bold;
+text-shadow:0 0 20px pink,0 0 40px red;
 }
 
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+/* Sparkles */
+.sparkle{
+position:fixed;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:sparkle 3s infinite alternate;
+}
+@keyframes sparkle{
+from{opacity:0.3;transform:scale(1);}
+to{opacity:1;transform:scale(2);}
 }
 
-.container {
-  padding: 40px 20px;
-  position: relative;
-  z-index: 2;
+/* Name + floating hearts */
+.name-box{position:relative;display:inline-block;margin-top:30px;}
+h1{
+font-size:48px;
+color:gold;
+text-shadow:0 0 20px gold;
+}
+.float-heart{
+position:absolute;
+font-size:22px;
+animation:float 4s infinite ease-in-out;
+opacity:0.6;
+}
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0);}
 }
 
-/* Golden Glowing Name */
-h1 {
-  font-size: 52px;
-  background: linear-gradient(to right, gold, #ffd700, #fff5b1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px rgba(255,215,0,0.7);
-  margin-bottom: 10px;
+/* Buttons */
+button{
+margin:12px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+button:hover{
+background:#ff1e4d;
+transform:scale(1.05);
 }
 
-h2 {
-  color: #cc0066;
-  font-weight: normal;
-  margin-bottom: 25px;
+/* Photo Frame */
+.photo-frame{
+display:none;
+margin-top:20px;
+position:relative;
+}
+.photo-frame::before{
+content:"🌹🌸🌺🌷🌼";
+position:absolute;
+top:-30px;
+left:50%;
+transform:translateX(-50%);
+font-size:30px;
+}
+.photo-frame::after{
+content:"🌼🌷🌺🌸🌹";
+position:absolute;
+bottom:-30px;
+left:50%;
+transform:translateX(-50%);
+font-size:30px;
+}
+#photo{
+width:200px;
+border-radius:15px;
+opacity:0;
+transition:2s;
+box-shadow:0 0 30px #ff4d6d;
+animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+from{box-shadow:0 0 20px #ff4d6d;}
+to{box-shadow:0 0 50px gold;}
 }
 
-.photo {
-  width: 260px;
-  border-radius: 20px;
-  margin: 20px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  transition: transform 0.4s ease;
+/* Bouquet */
+#bouquet{
+display:none;
+font-size:80px;
+opacity:0;
+transition:1.5s;
+margin-top:20px;
 }
 
-.photo:hover {
-  transform: scale(1.05);
+/* Letter */
+.letter-box{
+margin:40px auto;
+width:80%;
+max-width:500px;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+.poetry{
+margin-top:20px;
+font-style:italic;
+color:#b3003b;
+min-height:120px;
 }
 
-.note {
-  max-width: 750px;
-  margin: auto;
-  font-size: 20px;
-  color: #4d004d;
-  background: rgba(255,255,255,0.9);
-  padding: 35px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  line-height: 1.9;
+/* Popup */
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 40px rgba(0,0,0,0.3);
+display:none;
+z-index:1000;
+}
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:none;
+top:0;
+left:0;
 }
 
-button {
-  margin-top: 30px;
-  padding: 14px 30px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  background-color: #ff4da6;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
+/* Heart explosion */
+.heart{
+position:fixed;
+color:red;
+font-size:22px;
+animation:explode 1.5s ease-out forwards;
+}
+@keyframes explode{
+to{transform:translateY(-200px) scale(2);opacity:0;}
 }
 
-button:hover {
-  background-color: #e60073;
-  transform: scale(1.05);
+/* I Love You */
+#loveContainer{display:none;margin-top:40px;}
+#loveText{
+font-size:60px;
+color:#ff004f;
+text-shadow:0 0 20px pink,0 0 40px red;
+opacity:0;
+transform:scale(0.5);
+transition:1.5s;
 }
-
-.hidden-message {
-  display: none;
-  margin-top: 25px;
-  font-size: 24px;
-  color: #99004d;
-  animation: fadeIn 2s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.showLove{
+opacity:1!important;
+transform:scale(1)!important;
 }
 </style>
 </head>
-
 <body>
 
-<!-- Background Music -->
-<audio autoplay loop>
-  <source src="https://pagalfree.com/musics/128-Dream%20Girl%20-%20Dream%20Girl%20128%20Kbps.mp3" type="audio/mpeg">
-</audio>
+<!-- Full screen countdown -->
+<div id="preCountdown">5</div>
 
-<div class="container">
+<div style="display:none;" id="mainContent">
 
+<div class="name-box">
 <h1>Wishma 🌹</h1>
-<h2>A celebration of you — every moment of your beautiful life 💖</h2>
-
-<img src="wishma.png" class="photo" alt="Wishma">
-
-<div class="note">
-<p><strong>My Dearest Wishma,</strong></p>
-
-<p>
-This bouquet of roses and blossoms is not for a single occasion.
-It is for every heartbeat of your existence.
-For every smile you give.
-For every moment you breathe.
-For simply being you.
-</p>
-
-<p>
-You are the softness in my world,
-the calm in my storms,
-and the most beautiful chapter of my life.
-</p>
-
-<p>
-🌹 "Tum meri zindagi ka woh khubsurat ehsaas ho,
-jise lafzon mein bayan karna namumkin sa lagta hai."
-</p>
-
-<p>
-🌸 "Har phool ki mehak mein tera hi zikr milta hai,
-jaise meri har dua ka jawab tum hi ho."
-</p>
-
-<p>
-Forever yours ❤️
-</p>
+<div class="float-heart" style="left:-25px;top:0;">❤️</div>
+<div class="float-heart" style="right:-25px;top:0;">💖</div>
 </div>
 
-<button onclick="showMessage()">Open My Heart 💌</button>
+<button onclick="showPhoto()">Reveal My Queen 👑</button>
+<button onclick="showBouquet()">Send Bouquet 💐</button>
+<button onclick="showLove()">I Have Something To Say ❤️</button>
 
-<div class="hidden-message" id="secret">
-Wishma… you are my dream girl, today and always 🌹✨
+<div class="photo-frame" id="photoFrame">
+<img id="photo" src="wishma.png" alt="Wishma">
 </div>
+
+<div id="bouquet">💐🌹🌸🌺🌷</div>
+
+<div id="loveContainer">
+<h1 id="loveText"></h1>
+</div>
+
+<div class="letter-box">
+<h2>For You ❤️</h2>
+<p>You are my rose, my blossom, my forever.</p>
+<div class="poetry" id="typingPoetry"></div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+<h2>My Dearest Wishma ❤️</h2>
+<p>You are the most beautiful chapter of my life.</p>
+<button onclick="closePopup()">Close 💌</button>
+</div>
+
+<audio autoplay loop>
+<source src="dreamgirl.mp3" type="audio/mpeg">
+</audio>
 
 </div>
 
 <script>
-// Generate Falling Rose Petals
-for (let i = 0; i < 30; i++) {
-  let petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "🌹";
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (4 + Math.random() * 6) + "s";
-  petal.style.fontSize = (15 + Math.random() * 20) + "px";
-  document.body.appendChild(petal);
+let poetryText=`Noor hi noor sy mukhre prh woh noori ankhein,<br>
+Uske enjil sy chereh prh woh zboori ankhein,
+  
+Teri surat sy hai alam mein baharon ko sabat,
+Teri aankhon ke siva iss duniya mein rakha kya hai.`;
+
+/* 5…4…3…2…1 Countdown before showing site */
+let pre = document.getElementById("preCountdown");
+let main = document.getElementById("mainContent");
+let count = 5;
+let countdownInterval = setInterval(()=>{
+count--;
+if(count>0){ pre.innerText = count;}
+else{
+pre.style.display="none";
+main.style.display="block";
+clearInterval(countdownInterval);
+typeEffect(poetryText,"typingPoetry");
+}
+},1000);
+
+/* Typing Effect */
+function typeEffect(text,id,speed=40){
+let i=0;
+let el=document.getElementById(id);
+el.innerHTML="";
+let typing=setInterval(()=>{
+if(i<text.length){
+el.innerHTML+=text.charAt(i);
+i++;
+}else{clearInterval(typing);}
+},speed);
 }
 
-function showMessage() {
-  document.getElementById("secret").style.display = "block";
+/* Photo reveal */
+function showPhoto(){
+document.getElementById("photoFrame").style.display="block";
+let photo=document.getElementById("photo");
+setTimeout(()=>{photo.style.opacity="1";},100);
+createHearts();
+showPopup();
+}
+
+/* Bouquet */
+function showBouquet(){
+let b=document.getElementById("bouquet");
+b.style.display="block";
+setTimeout(()=>{b.style.opacity="1";},100);
+}
+
+/* I LOVE YOU */
+function showLove(){
+let container=document.getElementById("loveContainer");
+let text=document.getElementById("loveText");
+container.style.display="block";
+let message="I LOVE YOU WISHMA ❤️";
+text.innerHTML="";
+let i=0;
+let typing=setInterval(()=>{
+if(i<message.length){
+text.innerHTML+=message.charAt(i);
+i++;
+}else{
+clearInterval(typing);
+text.classList.add("showLove");
+explodeHearts();
+}
+},120);
+}
+
+/* Heart explosion */
+function explodeHearts(){
+for(let i=0;i<40;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.top="50%";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},1500);
+}
+}
+
+function createHearts(){
+for(let i=0;i<25;i++){
+let heart=document.createElement("div");
+heart.innerHTML="❤️";
+heart.className="heart";
+heart.style.left=Math.random()*100+"vw";
+heart.style.top="60%";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},1500);
+}
+}
+
+/* Popup */
+function showPopup(){
+document.getElementById("popup").style.display="block";
+document.getElementById("overlay").style.display="block";
+}
+function closePopup(){
+document.getElementById("popup").style.display="none";
+document.getElementById("overlay").style.display="none";
+}
+
+/* Sparkles */
+for(let i=0;i<40;i++){
+let s=document.createElement("div");
+s.className="sparkle";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+document.body.appendChild(s);
 }
 </script>
 
