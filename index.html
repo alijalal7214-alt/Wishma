@@ -3,180 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Wishma 🌹</title>
+<title>Special Surprise 💖</title>
 
 <style>
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(135deg, #ffd1dc, #fff0f5);
-  text-align: center;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff4d6d, #ff99c8);
+    overflow: hidden;
+    text-align: center;
+    color: white;
 }
 
-/* Falling Rose Petals */
-.petal {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall linear infinite;
-  color: #ff4d6d;
-  z-index: 1;
+/* Countdown Screen */
+#countdown-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff0066, #ff6699);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    font-weight: bold;
+    z-index: 10;
 }
 
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-}
-
-.container {
-  padding: 40px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Golden Glowing Name */
-h1 {
-  font-size: 52px;
-  background: linear-gradient(to right, gold, #ffd700, #fff5b1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px rgba(255,215,0,0.7);
-  margin-bottom: 10px;
-}
-
-h2 {
-  color: #cc0066;
-  font-weight: normal;
-  margin-bottom: 25px;
-}
-
-.photo {
-  width: 260px;
-  border-radius: 20px;
-  margin: 20px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  transition: transform 0.4s ease;
-}
-
-.photo:hover {
-  transform: scale(1.05);
-}
-
-.note {
-  max-width: 750px;
-  margin: auto;
-  font-size: 20px;
-  color: #4d004d;
-  background: rgba(255,255,255,0.9);
-  padding: 35px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  line-height: 1.9;
+/* Main Content */
+#main-content {
+    display: none;
+    padding-top: 80px;
 }
 
 button {
-  margin-top: 30px;
-  padding: 14px 30px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  background-color: #ff4da6;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    background: #ff0066;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-  background-color: #e60073;
-  transform: scale(1.05);
+    background: #ff3385;
+    transform: scale(1.1);
 }
 
-.hidden-message {
-  display: none;
-  margin-top: 25px;
-  font-size: 24px;
-  color: #99004d;
-  animation: fadeIn 2s ease-in;
+/* Gift Box */
+#gift-box {
+    margin: 40px auto;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    display: none;
+}
+
+.box {
+    width: 150px;
+    height: 100px;
+    background: #ff0066;
+    position: absolute;
+    bottom: 0;
+    border-radius: 10px;
+}
+
+.lid {
+    width: 150px;
+    height: 50px;
+    background: #ff3385;
+    position: absolute;
+    top: 0;
+    border-radius: 10px 10px 0 0;
+    transition: transform 1s ease;
+    transform-origin: top center;
+}
+
+.ribbon-vertical, .ribbon-horizontal {
+    position: absolute;
+    background: white;
+}
+
+.ribbon-vertical {
+    width: 20px;
+    height: 150px;
+    left: 65px;
+}
+
+.ribbon-horizontal {
+    height: 20px;
+    width: 150px;
+    top: 40px;
+}
+
+/* Bouquet */
+#bouquet {
+    display: none;
+    margin-top: 20px;
+    animation: fadeIn 2s ease forwards;
+}
+
+#bouquet img {
+    width: 250px;
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes float {
+    0% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+    100% {transform: translateY(0);}
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    color: pink;
+    font-size: 24px;
+    animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+    0% {transform: translateY(0) scale(1); opacity: 1;}
+    100% {transform: translateY(-800px) scale(1.5); opacity: 0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio autoplay loop>
-  <source src="https://pagalfree.com/musics/128-Dream%20Girl%20-%20Dream%20Girl%20128%20Kbps.mp3" type="audio/mpeg">
-</audio>
+<div id="countdown-screen">5</div>
 
-<div class="container">
+<div id="main-content">
+    <h1>🎁 I Have a Surprise For You 💖</h1>
+    <button onclick="showGift()">Open Your Gift</button>
 
-<h1>Wishma 🌹</h1>
-<h2>A celebration of you — every moment of your beautiful life 💖</h2>
+    <div id="gift-box" onclick="openGift()">
+        <div class="lid" id="lid"></div>
+        <div class="box"></div>
+        <div class="ribbon-vertical"></div>
+        <div class="ribbon-horizontal"></div>
+    </div>
 
-<img src="wishma.png" class="photo" alt="Wishma">
-
-<div class="note">
-<p><strong>My Dearest Wishma,</strong></p>
-
-<p>
-This bouquet of roses and blossoms is not for a single occasion.
-It is for every heartbeat of your existence.
-For every smile you give.
-For every moment you breathe.
-For simply being you.
-</p>
-
-<p>
-You are the softness in my world,
-the calm in my storms,
-and the most beautiful chapter of my life.
-</p>
-
-<p>
-🌹 "Tum meri zindagi ka woh khubsurat ehsaas ho,
-jise lafzon mein bayan karna namumkin sa lagta hai."
-</p>
-
-<p>
-🌸 "Har phool ki mehak mein tera hi zikr milta hai,
-jaise meri har dua ka jawab tum hi ho."
-</p>
-
-<p>
-Forever yours ❤️
-</p>
-</div>
-
-<button onclick="showMessage()">Open My Heart 💌</button>
-
-<div class="hidden-message" id="secret">
-Wishma… you are my dream girl, today and always 🌹✨
-</div>
-
+    <div id="bouquet">
+        <img src="https://i.imgur.com/3QZ4X9K.png" alt="Bouquet">
+        <h2>I Love You ❤️</h2>
+    </div>
 </div>
 
 <script>
-// Generate Falling Rose Petals
-for (let i = 0; i < 30; i++) {
-  let petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "🌹";
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (4 + Math.random() * 6) + "s";
-  petal.style.fontSize = (15 + Math.random() * 20) + "px";
-  document.body.appendChild(petal);
+// Countdown
+let count = 5;
+let countdownEl = document.getElementById("countdown-screen");
+
+let timer = setInterval(() => {
+    count--;
+    countdownEl.textContent = count;
+
+    if (count === 0) {
+        clearInterval(timer);
+        countdownEl.style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+    }
+}, 1000);
+
+// Show Gift Box
+function showGift() {
+    document.getElementById("gift-box").style.display = "block";
 }
 
-function showMessage() {
-  document.getElementById("secret").style.display = "block";
+// Open Gift Animation
+function openGift() {
+    document.getElementById("lid").style.transform = "rotateX(120deg)";
+    
+    setTimeout(() => {
+        document.getElementById("gift-box").style.display = "none";
+        document.getElementById("bouquet").style.display = "block";
+    }, 1000);
 }
+
+// Floating Hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
 </script>
 
 </body>
