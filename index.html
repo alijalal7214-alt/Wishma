@@ -3,179 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Wishma 🌹</title>
+<title>Happy 2nd Anniversary Wishma ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Georgia', serif;
-  background: linear-gradient(135deg, #ffd1dc, #fff0f5);
-  text-align: center;
-  overflow-x: hidden;
+body{
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI',sans-serif;
+  background: linear-gradient(135deg,#ff6a88,#ff99ac);
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+audio{ display:none; }
+
+/* Countdown */
+#countdown{
+  position:absolute;
+  top:40%;
+  width:100%;
+  font-size:100px;
+  font-weight:bold;
+  animation:pulse 1s infinite;
+}
+@keyframes pulse{
+  0%{opacity:0.4;} 50%{opacity:1;} 100%{opacity:0.4;}
 }
 
-/* Falling Rose Petals */
-.petal {
-  position: fixed;
-  top: -10px;
-  font-size: 20px;
-  animation: fall linear infinite;
-  color: #ff4d6d;
-  z-index: 1;
+/* Gift */
+#gift{
+  display:none;
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  cursor:pointer;
+}
+.box{
+  width:170px;height:170px;
+  background:#ff4d6d;
+  border-radius:20px;
+  position:relative;
+}
+.lid{
+  width:170px;height:50px;
+  background:#c9184a;
+  position:absolute;
+  top:-45px;left:0;
+  border-radius:20px;
+  transition:0.8s;
+}
+.ribbon{
+  width:35px;height:170px;
+  background:white;
+  position:absolute;left:68px;
+}
+#gift.open .lid{
+  transform:rotate(-40deg) translateY(-120px);
 }
 
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+/* Main */
+#content{
+  display:none;
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+}
+#content img{ width:280px; }
+
+/* Floating Photos */
+.memory{
+  position:absolute;
+  width:120px;
+  border-radius:15px;
+  animation:floatUp linear forwards;
+  opacity:0.9;
+  box-shadow:0 0 20px rgba(255,255,255,0.7);
+  cursor:pointer;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translateY(-110vh) rotate(360deg);opacity:0;}
 }
 
-.container {
-  padding: 40px 20px;
-  position: relative;
-  z-index: 2;
+/* Photo Modal */
+#photoModal,#letterModal{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
+  z-index:5;
+}
+#photoModal img{
+  max-width:80%;
+  max-height:80%;
+  border-radius:20px;
+  box-shadow:0 0 40px white;
 }
 
-/* Golden Glowing Name */
-h1 {
-  font-size: 52px;
-  background: linear-gradient(to right, gold, #ffd700, #fff5b1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px rgba(255,215,0,0.7);
-  margin-bottom: 10px;
+/* Love Notes */
+.note{
+  position:absolute;
+  width:70px;height:70px;
+  background:white;
+  color:#ff4d6d;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  cursor:pointer;
+  animation:floatNote 12s linear infinite;
+}
+@keyframes floatNote{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-120vh);}
+}
+.letterBox{
+  background:white;
+  color:#ff4d6d;
+  width:80%;max-width:500px;
+  padding:25px;
+  border-radius:20px;
+  max-height:70%;
+  overflow-y:auto;
+  text-align:left;
 }
 
-h2 {
-  color: #cc0066;
-  font-weight: normal;
-  margin-bottom: 25px;
+/* Proposal */
+#proposal{
+  display:none;
+  position:fixed;
+  bottom:60px;width:100%;
+}
+#proposal h2{
+  font-size:30px;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 10px white;}
+  to{text-shadow:0 0 30px #fff,0 0 50px #ff4d6d;}
+}
+.yesBtn{
+  padding:15px 35px;
+  font-size:20px;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:#ff4d6d;
+  cursor:pointer;
+  transition:0.3s;
+}
+.yesBtn:hover{
+  transform:scale(1.2);
+  background:#ff4d6d;
+  color:white;
 }
 
-.photo {
-  width: 260px;
-  border-radius: 20px;
-  margin: 20px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  transition: transform 0.4s ease;
+/* Forever Message */
+#foreverMessage{
+  display:none;
+  position:fixed;
+  top:45%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:50px;
+  font-weight:bold;
+  z-index:3;
 }
 
-.photo:hover {
-  transform: scale(1.05);
-}
-
-.note {
-  max-width: 750px;
-  margin: auto;
-  font-size: 20px;
-  color: #4d004d;
-  background: rgba(255,255,255,0.9);
-  padding: 35px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  line-height: 1.9;
-}
-
-button {
-  margin-top: 30px;
-  padding: 14px 30px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  background-color: #ff4da6;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background-color: #e60073;
-  transform: scale(1.05);
-}
-
-.hidden-message {
-  display: none;
-  margin-top: 25px;
-  font-size: 24px;
-  color: #99004d;
-  animation: fadeIn 2s ease-in;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Fireworks */
+canvas{
+  position:fixed;
+  top:0;left:0;
+  pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio autoplay loop>
-  <source src="https://pagalfree.com/musics/128-Dream%20Girl%20-%20Dream%20Girl%20128%20Kbps.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgMusic" src="romantic.mp3" loop></audio>
 
-<div class="container">
+<div id="countdown">5</div>
 
-<h1>Wishma 🌹</h1>
-<h2>A celebration of you — every moment of your beautiful life 💖</h2>
-
-<img src="wishma.png" class="photo" alt="Wishma">
-
-<div class="note">
-<p><strong>My Dearest Wishma,</strong></p>
-
-<p>
-This bouquet of roses and blossoms is not for a single occasion.
-It is for every heartbeat of your existence.
-For every smile you give.
-For every moment you breathe.
-For simply being you.
-</p>
-
-<p>
-You are the softness in my world,
-the calm in my storms,
-and the most beautiful chapter of my life.
-</p>
-
-<p>
-🌹 "Tum meri zindagi ka woh khubsurat ehsaas ho,
-jise lafzon mein bayan karna namumkin sa lagta hai."
-</p>
-
-<p>
-🌸 "Har phool ki mehak mein tera hi zikr milta hai,
-jaise meri har dua ka jawab tum hi ho."
-</p>
-
-<p>
-Forever yours ❤️
-</p>
+<div id="gift">
+  <div class="box">
+    <div class="lid"></div>
+    <div class="ribbon"></div>
+  </div>
+  <p>Click to Open 💝</p>
 </div>
 
-<button onclick="showMessage()">Open My Heart 💌</button>
-
-<div class="hidden-message" id="secret">
-Wishma… you are my dream girl, today and always 🌹✨
+<div id="content">
+  <img src="bouquet.png">
+  <h1>Happy 2nd Anniversary Wishma ❤️</h1>
+  <p>2 Years. Infinite Love. Forever To Go 💕</p>
 </div>
 
+<div id="proposal">
+  <h2>Will You Stay Forever With Me? 💍</h2>
+  <button class="yesBtn" onclick="sayYes()">YES ❤️</button>
 </div>
+
+<div id="foreverMessage">Forever & Always 💖</div>
+
+<div id="photoModal" onclick="this.style.display='none'">
+  <img id="modalImg">
+</div>
+
+<div id="letterModal" onclick="this.style.display='none'">
+  <div class="letterBox">
+    <h2>To My Dearest Wishma 💖</h2>
+    <p>
+    Two years ago, you walked into my life and made everything brighter.  
+    Every smile of yours became my peace.  
+    Every memory became my treasure.  
+    <br><br>
+    Through every moment, you have been my home.  
+    And I promise to keep choosing you.  
+    Today, tomorrow, and forever.  
+    <br><br>
+    Happy Anniversary my love ❤️  
+    — Yours Forever, Ali
+    </p>
+  </div>
+</div>
+
+<canvas id="fireworks"></canvas>
 
 <script>
-// Generate Falling Rose Petals
-for (let i = 0; i < 30; i++) {
-  let petal = document.createElement("div");
-  petal.className = "petal";
-  petal.innerHTML = "🌹";
-  petal.style.left = Math.random() * 100 + "vw";
-  petal.style.animationDuration = (4 + Math.random() * 6) + "s";
-  petal.style.fontSize = (15 + Math.random() * 20) + "px";
-  document.body.appendChild(petal);
+let count=5;
+let timer=setInterval(()=>{
+  count--;
+  countdown.innerHTML=count;
+  if(count==0){
+    clearInterval(timer);
+    countdown.style.display="none";
+    gift.style.display="block";
+  }
+},1000);
+
+gift.onclick=function(){
+  this.classList.add("open");
+  setTimeout(()=>{
+    this.style.display="none";
+    content.style.display="block";
+    bgMusic.play();
+    startMemories();
+    startNotes();
+    setTimeout(()=>{proposal.style.display="block";},6000);
+  },800);
+};
+
+/* PNG Photos */
+const photos=[
+"photo1.png","photo2.png","photo3.png","photo4.png","photo5.png",
+"photo6.png","photo7.png","photo8.png","photo9.png","photo10.png"
+];
+
+function createMemory(){
+  let img=document.createElement("img");
+  img.src=photos[Math.floor(Math.random()*photos.length)];
+  img.className="memory";
+  img.style.left=Math.random()*100+"vw";
+  img.style.animationDuration=(10+Math.random()*5)+"s";
+  img.onclick=()=>{modalImg.src=img.src;photoModal.style.display="flex";}
+  document.body.appendChild(img);
+  setTimeout(()=>{img.remove();},15000);
+}
+function startMemories(){ setInterval(createMemory,900); }
+
+/* Love Notes */
+function createNote(){
+  let note=document.createElement("div");
+  note.className="note";
+  note.innerHTML="💌";
+  note.style.left=Math.random()*90+"vw";
+  note.onclick=()=>{letterModal.style.display="flex";}
+  document.body.appendChild(note);
+  setTimeout(()=>{note.remove();},12000);
+}
+function startNotes(){ setInterval(createNote,5000); }
+
+/* Proposal + Fireworks */
+function sayYes(){
+  proposal.style.display="none";
+  foreverMessage.style.display="block";
+  startFireworks();
 }
 
-function showMessage() {
-  document.getElementById("secret").style.display = "block";
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function createFirework(){
+  let x=Math.random()*canvas.width;
+  let y=Math.random()*canvas.height/2;
+  for(let i=0;i<100;i++){
+    particles.push({
+      x:x,y:y,
+      angle:Math.random()*2*Math.PI,
+      speed:Math.random()*5+2,
+      alpha:1
+    });
+  }
+}
+
+function animate(){
+  requestAnimationFrame(animate);
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    p.x+=Math.cos(p.angle)*p.speed;
+    p.y+=Math.sin(p.angle)*p.speed;
+    p.alpha-=0.01;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,2*Math.PI);
+    ctx.fillStyle="rgba(255,255,255,"+p.alpha+")";
+    ctx.fill();
+    if(p.alpha<=0) particles.splice(i,1);
+  });
+}
+function startFireworks(){
+  setInterval(createFirework,800);
+  animate();
 }
 </script>
 
